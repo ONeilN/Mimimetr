@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{css/welcome.css}" type="text/css"/>
+    <meta charset="UTF-8">
+    <title>Mimimimetr</title>
+</head>
+<body>
+
+<div id="greetings">
+    Добро пожаловать!
+</div>
+
+<div id="page_guide">
+    Это конкурс за звание самого мимимишного котика! Если хотите проголосовать, нажмите кнопку ниже)
+</div>
+
+<div id="vote_link">
+    <a id="link" th:href="@{/vote}">Голосовать</a>
+</div>
+
+</body>
+</html>
