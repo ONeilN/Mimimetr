@@ -6,6 +6,7 @@ import com.nugumanov.mimimetr.repositories.CatsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.annotation.SessionScope;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
  */
 @Service
 @Transactional(readOnly = true)
+@SessionScope
 public class CatsService {
 
     private final CatsRepository catsRepository;

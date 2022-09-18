@@ -7,36 +7,34 @@
 </head>
 <body>
 
-<div>
-    <div id="app_name">
-        Мимимиметр
-    </div>
+<div id="app_name">
+    Мимимиметр
+</div>
 
-    <div id="page_guide">
-        Кто из них мимимишнее? Кликни по фотографии!
-    </div>
+<div id="page_guide">
+    Кто из них мимимишнее? Кликни по фотографии!
+</div>
 
-    <form th:method="GET" th:action="@{/}">
-        <div class="vote_area">
-            <div class="image_area">
-                <a th:href="@{/vote/{id}(id=${leftCat.getId()})}">
-                    <img th:src="@{img/cats/{path}(path=${leftCat.getImgPath()})}" width="500" height="500">
-                </a>
-                <div class="cat_name">
-                    <p th:text="${leftCat.getName()}"></p>
-                </div>
-            </div>
-            <div class="image_area">
-                <a th:href="@{/vote/{id}(id=${rightCat.getId()})}">
-                    <img th:src="@{img/cats/{path}(path=${rightCat.getImgPath()})}" width="500" height="500">
-                </a>
-                <div class="cat_name">
-                    <p th:text="${rightCat.getName()}"></p>
-                </div>
+<form th:method="GET" th:action="@{/}">
+    <div class="vote_area">
+        <div class="image_area">
+            <a th:href="@{/vote/{id}(id=${leftCat.getId()})}">
+                <img th:src="@{img/cats/{path}(path=${leftCat.getImgPath()})}" width="500" height="500">
+            </a>
+            <div class="cat_name">
+                <p th:text="${leftCat.getName()}"></p>
             </div>
         </div>
-    </form>
-</div>
+        <div class="image_area">
+            <a th:href="@{/vote/{id}(id=${rightCat.getId()})}">
+                <img th:src="@{img/cats/{path}(path=${rightCat.getImgPath()})}" width="500" height="500">
+            </a>
+            <div class="cat_name">
+                <p th:text="${rightCat.getName()}"></p>
+            </div>
+        </div>
+    </div>
+</form>
 
 </body>
 </html>

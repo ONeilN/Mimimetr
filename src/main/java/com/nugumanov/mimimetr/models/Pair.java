@@ -49,6 +49,10 @@ public class Pair {
         }
     }
 
+    public boolean isContain(int id) {
+        return (cat1ID == id || cat2ID == id);
+    }
+
     @Override
     public int hashCode() {
         int result = cat1ID;

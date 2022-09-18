@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.annotation.SessionScope;
 
 import java.util.List;
 
@@ -18,6 +19,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/vote")
+@SessionScope
 public class VoteController {
 
     private final CatsService catsService;
@@ -32,9 +34,12 @@ public class VoteController {
 
     @GetMapping
     public String index(Model model) {
+        boolean created = voteService.createPairs();
+        System.out.println("Is pairs list created? " + created);
+
         pair = voteService.getRandomPair();
         List<Cat> cats = catsService.getCatsFromPair(pair);
-        System.out.println(pair.getCat1ID() + " " + pair.getCat2ID());
+
         model.addAttribute("leftCat", cats.get(0));
         model.addAttribute("rightCat", cats.get(1));
 
@@ -43,11 +48,17 @@ public class VoteController {
 
     @GetMapping("/{id}")
     public String vote(@PathVariable("id") int id) {
+
+        if (!pair.isContain(id)) {
+            System.out.println("ID doesn't match any cat from the pair!");
+            return "redirect:/vote";
+        }
+
         voteService.vote(id);
         voteService.deletePair(pair);
 
         if (voteService.isPairsOver()) {
-            return "rating";
+            return "redirect:/rating";
         } else {
             return "redirect:/vote";
         }

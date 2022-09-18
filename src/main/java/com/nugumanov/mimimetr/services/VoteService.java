@@ -6,6 +6,7 @@ import com.nugumanov.mimimetr.repositories.CatsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.annotation.SessionScope;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,16 +16,16 @@ import java.util.List;
  */
 @Service
 @Transactional(readOnly = true)
+@SessionScope
 public class VoteService {
 
     private final CatsRepository catsRepository;
-    private List<Pair> pairs;
+    private final List<Pair> pairs;
 
     @Autowired
     public VoteService(CatsRepository catsRepository) {
         this.catsRepository = catsRepository;
         pairs = new ArrayList<>();
-        createPairs();
     }
 
     @Transactional
@@ -35,10 +36,10 @@ public class VoteService {
         });
     }
 
-    public void createPairs() {
+    public boolean createPairs() {
 
         if (!pairs.isEmpty()) {
-            pairs.clear();
+            return false;
         }
 
         List<Cat> cats = catsRepository.findAll();
@@ -59,6 +60,8 @@ public class VoteService {
         for (Pair pair : pairs) {
             System.out.println(pair);
         }
+
+        return true;
     }
 
     public Pair getRandomPair() {

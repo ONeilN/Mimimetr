@@ -22,7 +22,7 @@ public class Cat {
     private String name;
 
     @Column(name = "img_path")
-    @NotEmpty
+    @NotEmpty(message = "Должно быть изображение кошки")
     private String imgPath;
 
     @Column(name = "voices")

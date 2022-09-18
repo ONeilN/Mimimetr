@@ -1,18 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" th:href="@{css/rating.css}" type="text/css"/>
     <meta charset="UTF-8">
     <title>Rating</title>
 </head>
 <body>
 
-<div>
+<div id="rating">
     Рейтинг
 </div>
 
-<div th:each="cat : ${cats}">
-    <img th:src="@{img/cats/{path}(path=${cat.getImgPath()})}" width="500" height="500">
+<div id="page_description">
+    Топ 10
 </div>
+
+
+<div id="result_area" th:each="cat, catStat : ${cats}">
+    <div class="cat_additional_area">
+        <p class="cat_place" th:text="${catStat.index} + 1"></p>
+    </div>
+    <div class="cat">
+        <img th:src="@{img/cats/{path}(path=${cat.getImgPath()})}" width="500" height="500">
+    </div>
+    <div class="cat_additional_area">
+        <p class="cat_name" th:text="${cat.getName()}"></p>
+    </div>
+</div>
+
+
+
+
 
 </body>
 </html>
