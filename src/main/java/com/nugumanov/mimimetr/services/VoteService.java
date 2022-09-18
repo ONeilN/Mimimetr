@@ -57,10 +57,6 @@ public class VoteService {
             }
         }
 
-        for (Pair pair : pairs) {
-            System.out.println(pair);
-        }
-
         return true;
     }
 
