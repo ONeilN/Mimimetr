@@ -22,7 +22,7 @@
                 <img th:src="@{img/cats/{path}(path=${leftCat.getImgPath()})}" width="500" height="500">
             </a>
             <div class="cat_name">
-                <p th:text="${leftCat.getName()}"></p>
+                <a th:href="@{/vote/{id}(id=${leftCat.getId()})}" th:text="${leftCat.getName()}" />
             </div>
         </div>
         <div class="image_area">
@@ -30,7 +30,7 @@
                 <img th:src="@{img/cats/{path}(path=${rightCat.getImgPath()})}" width="500" height="500">
             </a>
             <div class="cat_name">
-                <p th:text="${rightCat.getName()}"></p>
+                <a th:href="@{/vote/{id}(id=${rightCat.getId()})}" th:text="${rightCat.getName()}" />
             </div>
         </div>
     </div>
