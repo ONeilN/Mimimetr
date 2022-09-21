@@ -38,6 +38,7 @@ public class VoteController {
         System.out.println("Is pairs list created? " + created);
 
         pair = voteService.getRandomPair();
+        System.out.println(pair.getLeftCatID() + " " + pair.getRightCatID());
         List<Cat> cats = catsService.getCatsFromPair(pair);
 
         model.addAttribute("leftCat", cats.get(0));

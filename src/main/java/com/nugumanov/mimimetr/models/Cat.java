@@ -1,5 +1,9 @@
 package com.nugumanov.mimimetr.models;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -7,6 +11,9 @@ import javax.validation.constraints.Size;
 /**
  * @author Aizat Nugumanov
  */
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "Cat")
 public class Cat {
@@ -28,44 +35,9 @@ public class Cat {
     @Column(name = "voices")
     private int voices;
 
-    public Cat() {
-    }
-
     public Cat(String name, String imgPath, int voices) {
         this.name = name;
         this.imgPath = imgPath;
-        this.voices = voices;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getImgPath() {
-        return imgPath;
-    }
-
-    public void setImgPath(String imgPath) {
-        this.imgPath = imgPath;
-    }
-
-    public int getVoices() {
-        return voices;
-    }
-
-    public void setVoices(int voices) {
         this.voices = voices;
     }
 }

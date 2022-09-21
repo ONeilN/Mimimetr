@@ -10,6 +10,7 @@ import org.springframework.web.context.annotation.SessionScope;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * @author Aizat Nugumanov
@@ -61,8 +62,7 @@ public class VoteService {
     }
 
     public Pair getRandomPair() {
-        int randomIndex = (int) (Math.random() * pairs.size());
-        return pairs.get(randomIndex);
+        return pairs.get(new Random().nextInt(pairs.size()));
     }
 
     public void deletePair(Pair pair) {

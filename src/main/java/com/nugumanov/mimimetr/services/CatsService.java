@@ -28,8 +28,8 @@ public class CatsService {
 
     public List<Cat> getCatsFromPair(Pair pair) {
         return Arrays.asList(
-                catsRepository.findById(pair.getCat1ID()).orElse(null),
-                catsRepository.findById(pair.getCat2ID()).orElse(null)
+                catsRepository.findById(pair.getLeftCatID()).orElse(null),
+                catsRepository.findById(pair.getRightCatID()).orElse(null)
         );
     }
 
