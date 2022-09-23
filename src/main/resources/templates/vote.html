@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" th:href="@{css/main.css}" type="text/css"/>
     <link rel="stylesheet" th:href="@{css/vote.css}" type="text/css"/>
     <meta charset="UTF-8">
     <title>Vote</title>
@@ -19,7 +20,7 @@
     <div class="vote_area">
         <div class="image_area">
             <a th:href="@{/vote/{id}(id=${leftCat.getId()})}">
-                <img th:src="@{img/cats/{path}(path=${leftCat.getImgPath()})}" width="500" height="500">
+                <img th:src="@{/img/{path}(path=${leftCat.getImgName()})}" width="500" height="500">
             </a>
             <div class="cat_name">
                 <a th:href="@{/vote/{id}(id=${leftCat.getId()})}" th:text="${leftCat.getName()}" />
@@ -27,7 +28,7 @@
         </div>
         <div class="image_area">
             <a th:href="@{/vote/{id}(id=${rightCat.getId()})}">
-                <img th:src="@{img/cats/{path}(path=${rightCat.getImgPath()})}" width="500" height="500">
+                <img th:src="@{/img/{path}(path=${rightCat.getImgName()})}" width="500" height="500">
             </a>
             <div class="cat_name">
                 <a th:href="@{/vote/{id}(id=${rightCat.getId()})}" th:text="${rightCat.getName()}" />

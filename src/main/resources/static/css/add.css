@@ -1,0 +1,24 @@
+#input_area {
+    width: 100%;
+    text-align: center;
+    margin-top: 100px;
+}
+
+.label_text {
+    font-size: 30px;
+    margin-top: 10px;
+}
+
+input {
+    width:30%;
+    margin:10px 0;
+    padding:10px;
+}
+.text_input {
+    border-radius:10px;
+    border: 1px solid #eee;
+    transition: .3s border-color;
+}
+.text_input:hover {
+    border: 1px solid #aaa;
+}

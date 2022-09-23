@@ -2,8 +2,8 @@ package com.nugumanov.mimimetr.controllers;
 
 import com.nugumanov.mimimetr.models.Cat;
 import com.nugumanov.mimimetr.models.Pair;
-import com.nugumanov.mimimetr.services.VoteService;
 import com.nugumanov.mimimetr.services.CatsService;
+import com.nugumanov.mimimetr.services.VoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

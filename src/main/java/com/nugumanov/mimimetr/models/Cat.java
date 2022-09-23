@@ -28,16 +28,14 @@ public class Cat {
     @Size(min = 2, max = 30, message = "Длина имени должна быть от 2 до 30 символов")
     private String name;
 
-    @Column(name = "img_path")
-    @NotEmpty(message = "Должно быть изображение кошки")
-    private String imgPath;
+    private String imgName;
 
     @Column(name = "voices")
     private int voices;
 
-    public Cat(String name, String imgPath, int voices) {
+    public Cat(String name, String imgName, int voices) {
         this.name = name;
-        this.imgPath = imgPath;
+        this.imgName = imgName;
         this.voices = voices;
     }
 }

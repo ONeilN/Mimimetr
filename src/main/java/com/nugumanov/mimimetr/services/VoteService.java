@@ -4,6 +4,7 @@ import com.nugumanov.mimimetr.models.Cat;
 import com.nugumanov.mimimetr.models.Pair;
 import com.nugumanov.mimimetr.repositories.CatsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.annotation.SessionScope;
