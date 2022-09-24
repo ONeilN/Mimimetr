@@ -3,6 +3,7 @@ package com.nugumanov.mimimetr.services;
 import com.nugumanov.mimimetr.models.Cat;
 import com.nugumanov.mimimetr.models.Pair;
 import com.nugumanov.mimimetr.repositories.CatsRepository;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +22,7 @@ import java.util.Random;
 public class VoteService {
 
     private final CatsRepository catsRepository;
+    @Getter
     private final List<Pair> pairs;
 
     @Autowired
