@@ -51,14 +51,16 @@ public class VoteService {
                 if (leftCat.getId() != rightCat.getId()) {
                     Pair tmpPair = new Pair(leftCat.getId(), rightCat.getId());
 
+                    if (new Random().nextBoolean()) {
+                        tmpPair.shuffle();
+                    }
+
                     if (!pairs.contains(tmpPair)) {
                         pairs.add(tmpPair);
                     }
                 }
-
             }
         }
-
         return true;
     }
 

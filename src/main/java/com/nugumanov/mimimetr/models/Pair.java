@@ -44,4 +44,10 @@ public class Pair {
     public boolean isContain(int id) {
         return (leftCatID == id || rightCatID == id);
     }
+
+    public void shuffle() {
+        int tmp = leftCatID;
+        leftCatID = rightCatID;
+        rightCatID = tmp;
+    }
 }
