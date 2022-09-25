@@ -41,7 +41,6 @@ public class CatAddingController {
                          @RequestParam("img") MultipartFile image) {
 
         if (bindingResult.hasErrors()) {
-            System.out.println(true);
             return "add";
         }
 
