@@ -37,9 +37,11 @@ public class CatAddingController {
 
     @PostMapping
     public String addCat(@ModelAttribute("cat") @Valid Cat cat,
-                         @RequestParam("img") MultipartFile image,
-                         BindingResult bindingResult) {
+                         BindingResult bindingResult,
+                         @RequestParam("img") MultipartFile image) {
+
         if (bindingResult.hasErrors()) {
+            System.out.println(true);
             return "add";
         }
 
