@@ -22,14 +22,14 @@ public class PairsService {
 
     private final PairsRepository pairsRepository;
     private final CatsService catsService;
-    private List<Pair> pairList;
+    private final GuestsService guestsService;
+    private List<Pair> pairs;
 
     @Autowired
-    public PairsService(PairsRepository pairsRepository, CatsService catsService) {
+    public PairsService(PairsRepository pairsRepository, CatsService catsService, GuestsService guestsService) {
         this.pairsRepository = pairsRepository;
         this.catsService = catsService;
-
-        pairList = getAllPairs();
+        this.guestsService = guestsService;
     }
 
     public List<Pair> getAllPairs() {
@@ -48,10 +48,9 @@ public class PairsService {
         }
 
         pairsRepository.saveAll(tmpPairs);
-        pairList = getAllPairs();
     }
     public Pair getRandomPair() {
-        Pair pair = pairList.get(new Random().nextInt(pairList.size()));
+        Pair pair = pairs.get(new Random().nextInt(pairs.size()));
 
         if (new Random().nextBoolean())
             pair.shuffle();
@@ -61,10 +60,16 @@ public class PairsService {
 
     @Transactional
     public void deletePair(Pair pair) {
-        pairList.remove(pair);
+        pairs.remove(pair);
     }
 
     public boolean isPairsOver() {
-        return pairList.isEmpty();
+        return pairs.isEmpty();
+    }
+
+    public void createGuestList() {
+        pairs = getAllPairs();
+        List<Pair> tmp = guestsService.getGuest().getPairList();
+        pairs.removeAll(tmp);
     }
 }

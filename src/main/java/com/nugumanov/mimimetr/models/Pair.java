@@ -29,7 +29,7 @@ public class Pair {
     @Column(name = "right_cat_id")
     private int rightCatID;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "Pair_Guest",
             joinColumns = @JoinColumn(name = "pair_id"),

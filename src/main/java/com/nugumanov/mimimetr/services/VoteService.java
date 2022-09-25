@@ -2,14 +2,10 @@ package com.nugumanov.mimimetr.services;
 
 import com.nugumanov.mimimetr.models.Pair;
 import com.nugumanov.mimimetr.repositories.CatsRepository;
-import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.annotation.SessionScope;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Aizat Nugumanov
@@ -21,14 +17,13 @@ public class VoteService {
 
     private final CatsRepository catsRepository;
     private final PairsService pairsService;
-    @Getter
-    private final List<Pair> pairs;
+    private final GuestsService guestsService;
 
     @Autowired
-    public VoteService(CatsRepository catsRepository, PairsService pairsService) {
+    public VoteService(CatsRepository catsRepository, PairsService pairsService, GuestsService guestsService) {
         this.catsRepository = catsRepository;
         this.pairsService = pairsService;
-        pairs = new ArrayList<>();
+        this.guestsService = guestsService;
     }
 
     @Transactional
@@ -38,6 +33,7 @@ public class VoteService {
             cat.setVoices(voices);
         });
 
+        guestsService.markPair(pair);
         pairsService.deletePair(pair);
     }
 }
