@@ -22,11 +22,11 @@ create table Pair_Guest (
     PRIMARY KEY (pair_id, guest_id)
 );
 
+INSERT INTO Cat (name, img_name, voices) VALUES ('Барсик', '1_Барсик.jpg', 0);
 INSERT INTO Cat (name, img_name, voices) VALUES ('Мурка', '2_Мурка.jpg', 0);
 INSERT INTO Cat (name, img_name, voices) VALUES ('Себастьян', '3_Себастьян.jpg', 0);
-INSERT INTO Cat (name, img_name, voices) VALUES ('Дурбей', '5_Дурбей.jpg', 0);
-INSERT INTO Cat (name, img_name, voices) VALUES ('Барсик', '1_Барсик.jpg', 0);
 INSERT INTO Cat (name, img_name, voices) VALUES ('Муся', '4_Муся.jpg', 0);
+INSERT INTO Cat (name, img_name, voices) VALUES ('Дурбей', '5_Дурбей.jpg', 0);
 
 INSERT INTO Pair (left_cat_id, right_cat_id) VALUES (1, 2);
 INSERT INTO Pair (left_cat_id, right_cat_id) VALUES (1, 3);

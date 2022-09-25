@@ -1,11 +1,15 @@
 package com.nugumanov.mimimetr.services;
 
+import com.nugumanov.mimimetr.models.Cat;
 import com.nugumanov.mimimetr.models.Pair;
 import com.nugumanov.mimimetr.repositories.CatsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.annotation.SessionScope;
+
+import java.util.Optional;
 
 /**
  * @author Aizat Nugumanov
@@ -26,14 +30,17 @@ public class VoteService {
         this.guestsService = guestsService;
     }
 
-    @Transactional
+    @Transactional(isolation = Isolation.SERIALIZABLE)
     public void vote(int id, Pair pair) {
-        catsRepository.findById(id).ifPresent(cat -> {
-            int voices = cat.getVoices() + 1;
-            cat.setVoices(voices);
-        });
 
-        guestsService.markPair(pair);
-        pairsService.deletePair(pair);
+        Optional<Cat> tmpCat = catsRepository.findById(id);
+
+        if (tmpCat.isPresent()) {
+            int voices = tmpCat.get().getVoices() + 1;
+            tmpCat.get().setVoices(voices);
+
+            guestsService.markPair(pair);
+            pairsService.deletePair(pair);
+        }
     }
 }
