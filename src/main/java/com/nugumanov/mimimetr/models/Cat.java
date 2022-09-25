@@ -28,6 +28,7 @@ public class Cat {
     @Size(min = 2, max = 30, message = "Длина имени должна быть от 2 до 30 символов")
     private String name;
 
+    @Column(name = "img_name")
     private String imgName;
 
     @Column(name = "voices")

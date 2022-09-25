@@ -1,9 +1,11 @@
 package com.nugumanov.mimimetr.models;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
+
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * @author Aizat Nugumanov
@@ -11,13 +13,34 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@ToString
+@NoArgsConstructor
+@Entity
+@Table(name = "Pair")
 public class Pair {
 
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(name = "left_cat_id")
     private int leftCatID;
 
+    @Column(name = "right_cat_id")
     private int rightCatID;
+
+    @ManyToMany
+    @JoinTable(
+            name = "Pair_Guest",
+            joinColumns = @JoinColumn(name = "pair_id"),
+            inverseJoinColumns = @JoinColumn(name = "guest_id")
+    )
+    private List<Guest> guestList;
+
+    public Pair(int leftCatID, int rightCatID) {
+        this.leftCatID = leftCatID;
+        this.rightCatID = rightCatID;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -26,12 +49,8 @@ public class Pair {
 
         Pair pair = (Pair) o;
 
-        if ((leftCatID == pair.leftCatID && rightCatID == pair.rightCatID)
-                || (leftCatID == pair.rightCatID && rightCatID == pair.leftCatID)) {
-            return true;
-        } else {
-            return false;
-        }
+        return (leftCatID == pair.leftCatID && rightCatID == pair.rightCatID)
+                || (leftCatID == pair.rightCatID && rightCatID == pair.leftCatID);
     }
 
     @Override
