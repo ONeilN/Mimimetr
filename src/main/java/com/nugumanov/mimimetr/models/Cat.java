@@ -19,7 +19,7 @@ import javax.validation.constraints.Size;
 public class Cat {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cat_id_seq")
     @Column(name = "id")
     private int id;
 

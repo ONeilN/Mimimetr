@@ -17,8 +17,8 @@ create table Guest (
 );
 
 create table Pair_Guest (
-    pair_id int REFERENCES Pair(id),
-    guest_id int REFERENCES Guest(id),
+    pair_id int REFERENCES Pair(id) ON DELETE CASCADE,
+    guest_id int REFERENCES Guest(id) ON DELETE CASCADE,
     PRIMARY KEY (pair_id, guest_id)
 );
 
@@ -27,3 +27,14 @@ INSERT INTO Cat (name, img_name, voices) VALUES ('Себастьян', '3_Себ
 INSERT INTO Cat (name, img_name, voices) VALUES ('Дурбей', '5_Дурбей.jpg', 0);
 INSERT INTO Cat (name, img_name, voices) VALUES ('Барсик', '1_Барсик.jpg', 0);
 INSERT INTO Cat (name, img_name, voices) VALUES ('Муся', '4_Муся.jpg', 0);
+
+INSERT INTO Pair (left_cat_id, right_cat_id) VALUES (1, 2);
+INSERT INTO Pair (left_cat_id, right_cat_id) VALUES (1, 3);
+INSERT INTO Pair (left_cat_id, right_cat_id) VALUES (1, 4);
+INSERT INTO Pair (left_cat_id, right_cat_id) VALUES (1, 5);
+INSERT INTO Pair (left_cat_id, right_cat_id) VALUES (2, 3);
+INSERT INTO Pair (left_cat_id, right_cat_id) VALUES (2, 4);
+INSERT INTO Pair (left_cat_id, right_cat_id) VALUES (2, 5);
+INSERT INTO Pair (left_cat_id, right_cat_id) VALUES (3, 4);
+INSERT INTO Pair (left_cat_id, right_cat_id) VALUES (3, 5);
+INSERT INTO Pair (left_cat_id, right_cat_id) VALUES (4, 5);

@@ -38,33 +38,34 @@ class VoteServiceTest {
             testCats.add(tmpCat);
         }
     }
+// TODO: Перенести и переделать в PairsServiceTest
 
-    @BeforeEach
-    public void init() {
-        voteService = new VoteService(catsRepository);
-    }
-
-    @Test
-    void vote_PairsIsEmpty() {
-        when(catsRepository.findAll()).thenReturn(testCats);
-
-        boolean isCreated = voteService.createPairs();
-        List<Pair> resultPairs = voteService.getPairs();
-
-        assertNotNull(resultPairs);
-        assertEquals(3, resultPairs.size());
-        assertTrue(isCreated);
-    }
-
-    @Test
-    void vote_PairsIsNotEmpty() {
-        when(catsRepository.findAll()).thenReturn(testCats);
-        boolean tmp = voteService.createPairs();
-
-        boolean isCreated = voteService.createPairs();
-        List<Pair> resultPairs = voteService.getPairs();
-
-        assertNotNull(resultPairs);
-        assertFalse(isCreated);
-    }
+//    @BeforeEach
+//    public void init() {
+//        voteService = new VoteService(catsRepository);
+//    }
+//
+//    @Test
+//    void vote_PairsIsEmpty() {
+//        when(catsRepository.findAll()).thenReturn(testCats);
+//
+//        boolean isCreated = voteService.createPairs();
+//        List<Pair> resultPairs = voteService.getPairs();
+//
+//        assertNotNull(resultPairs);
+//        assertEquals(3, resultPairs.size());
+//        assertTrue(isCreated);
+//    }
+//
+//    @Test
+//    void vote_PairsIsNotEmpty() {
+//        when(catsRepository.findAll()).thenReturn(testCats);
+//        boolean tmp = voteService.createPairs();
+//
+//        boolean isCreated = voteService.createPairs();
+//        List<Pair> resultPairs = voteService.getPairs();
+//
+//        assertNotNull(resultPairs);
+//        assertFalse(isCreated);
+//    }
 }

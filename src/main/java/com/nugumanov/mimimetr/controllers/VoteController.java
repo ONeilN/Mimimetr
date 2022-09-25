@@ -3,6 +3,7 @@ package com.nugumanov.mimimetr.controllers;
 import com.nugumanov.mimimetr.models.Cat;
 import com.nugumanov.mimimetr.models.Pair;
 import com.nugumanov.mimimetr.services.CatsService;
+import com.nugumanov.mimimetr.services.PairsService;
 import com.nugumanov.mimimetr.services.VoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,21 +25,20 @@ public class VoteController {
 
     private final CatsService catsService;
     private final VoteService voteService;
+    private final PairsService pairsService;
     private Pair pair;
 
     @Autowired
-    public VoteController(CatsService catsService, VoteService voteService) {
+    public VoteController(CatsService catsService, VoteService voteService, PairsService pairsService) {
         this.catsService = catsService;
         this.voteService = voteService;
+        this.pairsService = pairsService;
     }
 
     @GetMapping
     public String index(Model model) {
-        boolean created = voteService.createPairs();
-        System.out.println("Is pairs list created? " + created);
 
-        pair = voteService.getRandomPair();
-        System.out.println(pair.getLeftCatID() + " " + pair.getRightCatID());
+        pair = pairsService.getRandomPair();
         List<Cat> cats = catsService.getCatsFromPair(pair);
 
         model.addAttribute("leftCat", cats.get(0));
@@ -55,10 +55,9 @@ public class VoteController {
             return "redirect:/vote";
         }
 
-        voteService.vote(id);
-        voteService.deletePair(pair);
+        voteService.vote(id, pair);
 
-        if (voteService.isPairsOver()) {
+        if (pairsService.isPairsOver()) {
             return "redirect:/rating";
         } else {
             return "redirect:/vote";

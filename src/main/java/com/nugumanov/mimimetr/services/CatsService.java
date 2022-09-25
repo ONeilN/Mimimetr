@@ -27,10 +27,16 @@ public class CatsService {
     @Value("${image.upload.path}")
     private String imageUploadPath;
     private final CatsRepository catsRepository;
+    private final PairsService pairsService;
 
     @Autowired
-    public CatsService(CatsRepository catsRepository) {
+    public CatsService(CatsRepository catsRepository, PairsService pairsService) {
         this.catsRepository = catsRepository;
+        this.pairsService = pairsService;
+    }
+
+    public List<Cat> getAllCats() {
+        return catsRepository.findAll();
     }
 
     public List<Cat> getCatsFromPair(Pair pair) {
@@ -61,5 +67,6 @@ public class CatsService {
         }
 
         catsRepository.save(cat);
+        pairsService.createPairs(cat);
     }
 }
